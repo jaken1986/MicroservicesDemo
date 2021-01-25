@@ -1,32 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MicroservicesDemo.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.Modeling;
-using Volo.Abp.Identity;
-using Volo.Abp.Users.EntityFrameworkCore;
 
 namespace MicroservicesDemo.EntityFrameworkCore
 {
-    /* This is your actual DbContext used on runtime.
-     * It includes only your entities.
-     * It does not include entities of the used modules, because each module has already
-     * its own DbContext class. If you want to share some database tables with the used modules,
-     * just create a structure like done for AppUser.
-     *
-     * Don't use this DbContext for database migrations since it does not contain tables of the
-     * used modules (as explained above). See MicroservicesDemoMigrationsDbContext for migrations.
-     */
-    [ConnectionStringName("Default")]
-    public class MicroservicesDemoDbContext : AbpDbContext<MicroservicesDemoDbContext>
+    [ConnectionStringName(MicroservicesDemoDbProperties.ConnectionStringName)]
+    public class MicroservicesDemoDbContext : AbpDbContext<MicroservicesDemoDbContext>, IMicroservicesDemoDbContext
     {
-        public DbSet<AppUser> Users { get; set; }
-
-        /* Add DbSet properties for your Aggregate Roots / Entities here.
-         * Also map them inside MicroservicesDemoDbContextModelCreatingExtensions.ConfigureMicroservicesDemo
+        /* Add DbSet for each Aggregate Root here. Example:
+         * public DbSet<Question> Questions { get; set; }
          */
 
-        public MicroservicesDemoDbContext(DbContextOptions<MicroservicesDemoDbContext> options)
+        public MicroservicesDemoDbContext(DbContextOptions<MicroservicesDemoDbContext> options) 
             : base(options)
         {
 
@@ -35,22 +20,6 @@ namespace MicroservicesDemo.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            /* Configure the shared tables (with included modules) here */
-
-            builder.Entity<AppUser>(b =>
-            {
-                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
-                
-                b.ConfigureByConvention();
-                b.ConfigureAbpUser();
-
-                /* Configure mappings for your additional properties
-                 * Also see the MicroservicesDemoEfCoreEntityExtensionMappings class
-                 */
-            });
-
-            /* Configure your own tables/entities inside the ConfigureMicroservicesDemo method */
 
             builder.ConfigureMicroservicesDemo();
         }

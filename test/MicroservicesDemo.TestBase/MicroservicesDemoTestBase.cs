@@ -8,8 +8,7 @@ using Volo.Abp.Testing;
 
 namespace MicroservicesDemo
 {
-    /* All test classes are derived from this class, directly or indirectly.
-     */
+    /* All test classes are derived from this class, directly or indirectly. */
     public abstract class MicroservicesDemoTestBase<TStartupModule> : AbpIntegratedTest<TStartupModule> 
         where TStartupModule : IAbpModule
     {

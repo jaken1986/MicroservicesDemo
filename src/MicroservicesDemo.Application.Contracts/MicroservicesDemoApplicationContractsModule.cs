@@ -1,27 +1,16 @@
-﻿using Volo.Abp.Account;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.Identity;
+﻿using Volo.Abp.Application;
 using Volo.Abp.Modularity;
-using Volo.Abp.ObjectExtending;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.TenantManagement;
+using Volo.Abp.Authorization;
 
 namespace MicroservicesDemo
 {
     [DependsOn(
         typeof(MicroservicesDemoDomainSharedModule),
-        typeof(AbpAccountApplicationContractsModule),
-        typeof(AbpFeatureManagementApplicationContractsModule),
-        typeof(AbpIdentityApplicationContractsModule),
-        typeof(AbpPermissionManagementApplicationContractsModule),
-        typeof(AbpTenantManagementApplicationContractsModule),
-        typeof(AbpObjectExtendingModule)
-    )]
+        typeof(AbpDddApplicationContractsModule),
+        typeof(AbpAuthorizationModule)
+        )]
     public class MicroservicesDemoApplicationContractsModule : AbpModule
     {
-        public override void PreConfigureServices(ServiceConfigurationContext context)
-        {
-            MicroservicesDemoDtoExtensions.Configure();
-        }
+
     }
 }

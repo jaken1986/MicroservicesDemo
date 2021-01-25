@@ -252,9 +252,7 @@ paket-files/
 *.sln.iml
 
 # MicroservicesDemo
-src/MicroservicesDemo.Web/Logs/*
-src/MicroservicesDemo.Web/Logs/*
-src/MicroservicesDemo.IdentityServer/Logs/*
-src/MicroservicesDemo.HttpApi.Host/Logs/*
-src/MicroservicesDemo.HttpApi.HostWithIds/Logs/*
-src/MicroservicesDemo.DbMigrator/Logs/*
+host/MicroservicesDemo.IdentityServer/Logs/logs.txt
+host/MicroservicesDemo.HttpApi.Host/Logs/logs.txt
+host/MicroservicesDemo.Web.Host/Logs/logs.txt
+host/MicroservicesDemo.Web.Unified/Logs/logs.txt

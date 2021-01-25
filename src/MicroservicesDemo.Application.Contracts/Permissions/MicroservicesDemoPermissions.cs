@@ -1,10 +1,14 @@
-﻿namespace MicroservicesDemo.Permissions
+﻿using Volo.Abp.Reflection;
+
+namespace MicroservicesDemo.Permissions
 {
-    public static class MicroservicesDemoPermissions
+    public class MicroservicesDemoPermissions
     {
         public const string GroupName = "MicroservicesDemo";
 
-        //Add your own permission names. Example:
-        //public const string MyPermission1 = GroupName + ".MyPermission1";
+        public static string[] GetAll()
+        {
+            return ReflectionHelper.GetPublicConstantsRecursively(typeof(MicroservicesDemoPermissions));
+        }
     }
 }

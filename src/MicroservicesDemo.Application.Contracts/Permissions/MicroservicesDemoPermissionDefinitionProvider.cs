@@ -8,10 +8,7 @@ namespace MicroservicesDemo.Permissions
     {
         public override void Define(IPermissionDefinitionContext context)
         {
-            var myGroup = context.AddGroup(MicroservicesDemoPermissions.GroupName);
-
-            //Define your own permissions here. Example:
-            //myGroup.AddPermission(MicroservicesDemoPermissions.MyPermission1, L("Permission:MyPermission1"));
+            var myGroup = context.AddGroup(MicroservicesDemoPermissions.GroupName, L("Permission:MicroservicesDemo"));
         }
 
         private static LocalizableString L(string name)

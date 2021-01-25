@@ -6,8 +6,9 @@ namespace MicroservicesDemo.Settings
     {
         public override void Define(ISettingDefinitionContext context)
         {
-            //Define your own settings here. Example:
-            //context.Add(new SettingDefinition(MicroservicesDemoSettings.MySetting1));
+            /* Define module settings here.
+             * Use names from MicroservicesDemoSettings class.
+             */
         }
     }
 }

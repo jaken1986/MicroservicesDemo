@@ -1,6 +1,9 @@
 ﻿namespace MicroservicesDemo
 {
-    public abstract class MicroservicesDemoDomainTestBase : MicroservicesDemoTestBase<MicroservicesDemoDomainTestModule> 
+    /* Inherit from this class for your domain layer tests.
+     * See SampleManager_Tests for example.
+     */
+    public abstract class MicroservicesDemoDomainTestBase : MicroservicesDemoTestBase<MicroservicesDemoDomainTestModule>
     {
 
     }

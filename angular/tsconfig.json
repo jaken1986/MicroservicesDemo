@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@my-company-name/microservices-demo": [
+        "projects/microservices-demo/src/public-api.ts"
+      ],
+      "@my-company-name/microservices-demo/config": [
+        "projects/microservices-demo/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/microservices-demo/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/microservices-demo/src/lib/proxy/*"]
+    }
+  }
+}

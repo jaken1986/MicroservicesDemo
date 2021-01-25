@@ -1,39 +1,32 @@
 ﻿using Localization.Resources.AbpUi;
 using MicroservicesDemo.Localization;
-using Volo.Abp.Account;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.Identity;
+using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.HttpApi;
-using Volo.Abp.TenantManagement;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroservicesDemo
 {
     [DependsOn(
         typeof(MicroservicesDemoApplicationContractsModule),
-        typeof(AbpAccountHttpApiModule),
-        typeof(AbpIdentityHttpApiModule),
-        typeof(AbpPermissionManagementHttpApiModule),
-        typeof(AbpTenantManagementHttpApiModule),
-        typeof(AbpFeatureManagementHttpApiModule)
-        )]
+        typeof(AbpAspNetCoreMvcModule))]
     public class MicroservicesDemoHttpApiModule : AbpModule
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
+        public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            ConfigureLocalization();
+            PreConfigure<IMvcBuilder>(mvcBuilder =>
+            {
+                mvcBuilder.AddApplicationPartIfNotExists(typeof(MicroservicesDemoHttpApiModule).Assembly);
+            });
         }
 
-        private void ConfigureLocalization()
+        public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
                     .Get<MicroservicesDemoResource>()
-                    .AddBaseTypes(
-                        typeof(AbpUiResource)
-                    );
+                    .AddBaseTypes(typeof(AbpUiResource));
             });
         }
     }

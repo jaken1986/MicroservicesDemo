@@ -1,8 +1,9 @@
-﻿using Volo.Abp;
-
-namespace MicroservicesDemo.EntityFrameworkCore
+﻿namespace MicroservicesDemo.EntityFrameworkCore
 {
-    public abstract class MicroservicesDemoEntityFrameworkCoreTestBase : MicroservicesDemoTestBase<MicroservicesDemoEntityFrameworkCoreTestModule> 
+    /* This class can be used as a base class for EF Core integration tests,
+     * while SampleRepository_Tests uses a different approach.
+     */
+    public abstract class MicroservicesDemoEntityFrameworkCoreTestBase : MicroservicesDemoTestBase<MicroservicesDemoEntityFrameworkCoreTestModule>
     {
 
     }
